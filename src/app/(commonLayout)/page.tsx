@@ -1,8 +1,14 @@
-import {Button} from "@/components/ui/button"
-export default function Home() {
+import { Button } from "@/components/ui/button"
+import { userService } from "@/services/user.service";
+
+
+export default async function Home() {
+  const { data, error } = await userService.getSession();
+
+  console.log(data)
   return (
     <div>
-      <Button >Click here</Button>
+      <Button  variant="outline">Click here</Button>
     </div>
   );
 }
