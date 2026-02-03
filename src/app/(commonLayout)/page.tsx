@@ -1,14 +1,21 @@
-import { Button } from "@/components/ui/button"
-import { userService } from "@/services/user.service";
+import TutorCard from "@/components/modules/homePage/TutorCard";
+import { tutorService } from "@/services/tutor.service";
+import { TutorProfile } from "@/types/tutor.type";
 
 
 export default async function Home() {
-  const { data, error } = await userService.getSession();
+
+  const { data } = await tutorService.getTutors();
 
   console.log(data)
+
   return (
-    <div>
-      <Button  variant="outline">Click here</Button>
+    <div className="grid grid-cols-3 max-w-7xl mx-auto px-4 gap-5">
+      {
+        data?.data?.map((tutor: TutorProfile) => (
+          <TutorCard key={tutor.id} tutor={tutor} />
+        ))
+      }
     </div>
   );
 }

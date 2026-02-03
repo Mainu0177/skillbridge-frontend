@@ -13,8 +13,10 @@ export const tutorService = {
             // if (data.succuss) {
             //     return
             // }
+
+            return {data: data, error: null}
         } catch (error) {
-            
+            return {data: null, error: {message: "Something went wrong"}}
         }
     }
 }
